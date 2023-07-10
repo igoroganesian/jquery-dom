@@ -74,7 +74,42 @@
 </div>
 <script src="https://unpkg.com/jquery"></script>
 <script>
-  // Add your code here!
+  /* 1 */
+  $("img").addClass("image-center");
+  //TODO: within article
+  /* 2 */
+  $("p:last").remove();
+  //TODO: last in article
+  /* 3 */
+  $("#title").css("font-size", Math.random() * 100);
+  /* 4 */
+  $("ol").append("<li>Testing</li>");
+  /* 5 */
+  $("aside").empty().append("<p>Sorry?</p>");
+  /* 6 */
+  $(".row.mb-5 input").on('input', function() {
+        // let r = $(".row.mb-5 div:eq(0) input").val();
+        let r = $(".form-control").eq(0).val(); //same as above
+        let b = $(".row.mb-5 div:eq(1) input").val();
+        let g = $(".row.mb-5 div:eq(2) input").val();
+        $("body").css("background-color", `rgba(${r},${g},${b})`);
+    });
+  //TODO: jquery eq method form-control 1,2,3?? keyUp?
+  /* 7 */
+  // $("img").click(function() {
+  //   $(this).remove();
+  // });
+
+
+  function deleteImg(evt) {
+    $(evt.target).remove();
+  }
+
+  $("img").on("click", deleteImg);
+
+
+
+
 </script>
 </body>
 
