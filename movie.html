@@ -14,10 +14,10 @@
     <form action="">
       <label for="title"> Title: </label>
 
-      <input type="text" id="title" placeholder="Title"> <br>
+      <input type="text" id="title" placeholder="Title?"><br>
       <label for="rating"> Rating: </label>
 
-      <input type="text" id="rating" placeholder="Number">
+      <input type="number" id="rating" placeholder="Rating?">
       <button id="submit"> Submit </button>
     </form>
   </div>
@@ -30,20 +30,36 @@
 
 
     function makeMovie() {
+      event.preventDefault();
+
+
       let $title = $("#title").val();
       let $rating = $("#rating").val();
-      let $movies = $("#movies");
-      let movies = $('<div>').addClass('movie-selected')
-      movies.append(`<p> Title: ${$title}  Rating: ${$rating}  </p>`)
+      let $moviesDiv = $("#movies");
+
+      if ($title.length < 2) {
+        alert("Title must be longer than 2 characters");
+        return;
+      }
+
+      if ($rating < 1 || $rating > 10) {
+        alert("Rating must be between 0 and 10");
+        return;
+      }
 
 
-      $movies.append(movies);
+      let newMovie = $('<div>').addClass('movie-selected');
+      newMovie.append(`<p> Title: ${$title}  Rating: ${$rating}</p>`);
 
-      let removeButtom = $("<button>").text('Remove');
-      removeButtom.click(function(){
-        movies.remove()
-      })
-      event.preventDefault()
+      let removeButton = $("<button>").text('Remove');
+      removeButton.click(function(){
+        newMovie.remove()
+      });
+
+      newMovie.append(removeButton);
+      $(newMovie).css("background-color", "dodgerblue");
+
+      $moviesDiv.append(newMovie);
     }
 
     $("#submit").on("click", makeMovie);
