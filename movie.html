@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie App!</title>
+</head>
+
+<body>
+
+  <div>
+    <form action="">
+      <label for="title"> Title: </label>
+
+      <input type="text" id="title" placeholder="Title"> <br>
+      <label for="rating"> Rating: </label>
+
+      <input type="text" id="rating" placeholder="Number">
+      <button id="submit"> Submit </button>
+    </form>
+  </div>
+
+  <div id="movies"> </div>
+
+  <script src="https://unpkg.com/jquery"></script>
+  <script>
+    //write code here...
+
+
+    function makeMovie() {
+      let $title = $("#title").val();
+      let $rating = $("#rating").val();
+      let $movies = $("#movies");
+      let movies = $('<div>').addClass('movie-selected')
+      movies.append(`<p> Title: ${$title}  Rating: ${$rating}  </p>`)
+
+
+      $movies.append(movies);
+
+      let removeButtom = $("<button>").text('Remove');
+      removeButtom.click(function(){
+        movies.remove()
+      })
+      event.preventDefault()
+    }
+
+    $("#submit").on("click", makeMovie);
+
+  </script>
+</body>
+
+</html>
